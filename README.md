@@ -1,2 +1,2 @@
-# DATA-226-Lab-1
-Building a Weather Prediction Analytics using Snowflake &amp; Airflow
+# DATA-226-SP26
+SJSU MSADI Data Warehouse
