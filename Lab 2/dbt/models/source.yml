@@ -1,0 +1,21 @@
+version: 2
+sources:
+  - name: raw
+    database: USER_DB_BOA
+    schema: RAW
+    description: "Schema which stores raw tables (ETL)"
+    tables:
+      - name: weather_data_lab1
+        identifier: weather_data_lab1
+        description: "Raw daily weather data loaded from the Open-Meteo API"
+  - name: analytics
+    database: USER_DB_BOA
+    schema: analytics
+    description: "Schema with stores analytics tables (ELT)"
+    tables:
+      - name: weather_weekly_precipitation
+        identifier: weather_weekly_precipitation
+        description: "Complete weather_weekly_precipitation info"
+      - name: percent_rainy_days_monthly
+        identifier: percent_rainy_days_monthly
+        description: "Complete percent_rainy_days_monthly info"

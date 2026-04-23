@@ -1,0 +1,23 @@
+version: 2
+
+models:
+
+  - name: stg_weather_data
+    description: "Cleaned staging model for raw weather data."
+    columns:
+      - name: weather_date
+        description: "Date of the weather observation."
+        tests:
+          - not_null
+      - name: city
+        description: "City name."
+        tests:
+          - not_null
+      - name: precipitation_sum
+        description: "Daily precipitation total."
+        tests:
+          - not_null
+      - name: weather_code
+        description: "Weather condition code from the source API."
+        tests:
+          - not_null

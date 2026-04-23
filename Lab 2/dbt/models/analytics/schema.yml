@@ -1,0 +1,40 @@
+version: 2
+models:
+  - name: weather_weekly_precipitation
+    description: "Analytics model for weekly precipitation totals by city"
+    columns:
+      - name: city
+        description: "City name"
+        data_tests:
+          - not_null
+      - name: week_start
+        description: "Start of the week"
+        data_tests:
+          - not_null
+      - name: weekly_precipitation
+        description: "Sum of precipitation for the week"
+        data_tests:
+          - not_null
+  - name: percent_rainy_days_monthly
+    description: "Monthly rainy day counts and percentage by city"
+    columns:
+      - name: city
+        description: "City name"
+        data_tests:
+          - not_null
+      - name: month_start
+        description: "Start of the month"
+        data_tests:
+          - not_null
+      - name: days_recorded
+        description: "Number of daily records available in the month"
+        data_tests:
+          - not_null
+      - name: rainy_days
+        description: "Number of days with precipitation greater than zero"
+        data_tests:
+          - not_null
+      - name: pct_rainy_days
+        description: "Percentage of recorded days in the month with precipitation greater than zero"
+        data_tests:
+          - not_null
