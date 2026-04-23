@@ -1,1 +1,107 @@
+Overview
+This project implements an end-to-end data analytics pipeline for weather data using modern data engineering tools:
 
+Apache Airflow for orchestration (ETL + scheduling)
+Snowflake for data storage and processing
+dbt (Data Build Tool) for transformations (ELT)
+BI Tool (Tableau / Superset / Preset) for visualization
+The pipeline ingests weather data from an external API, transforms it into analytics-ready tables, and enables visualization of insights such as precipitation trends and rainy-day patterns.
+
+Pipeline Components
+1. ETL (Airflow)
+Extracts weather data from Open-Meteo API
+Transforms JSON responses into tabular format
+Loads data into Snowflake (RAW.weather_data_lab1)
+Scheduled and managed via Airflow DAGs
+2. ELT (dbt)
+dbt transforms raw data into structured models:
+
+Staging Layer
+stg_weather_data
+Cleans and standardizes raw data
+Casts types and renames columns
+Analytics Layer
+weather_weekly_precipitation
+Aggregates precipitation weekly by city
+percent_rainy_days_monthly
+Calculates rainy days and percentage per month
+Average temps
+Calculates the average highs and lows temperature by city
+Weather code Distribution
+View the weather distribution by city
+Snapshot
+snapshot_weather_data
+Tracks historical changes in weather records (optional)
+3. Visualization
+A BI tool is used to build dashboards based on dbt models.
+
+Example insights:
+
+Weekly precipitation trends
+Monthly percentage of rainy days
+City comparisons (San Jose vs Lake Tahoe)
+
+Project Structure
+.
+├── dags/
+│   └── build_elt_with_dbt.py        # Airflow DAG to run dbt
+│   └── 226 - lab 1 - Open Meteo_v2.py       # Airflow DAG to run ETL, ingest raw data
+│
+├── dbt/
+│   ├── dbt_project.yml
+│   ├── profiles.yml
+│   ├── models/
+│   │   ├── source.yml
+│   │   ├── staging/
+│   │   │   ├── stg_weather_data.sql
+│   │   │   └── staging.yml
+│   │   └── analytics/
+│   │       ├── weather_weekly_precipitation.sql
+│   │       ├── percent_rainy_days_monthly.sql
+│   │       ├── average_temps.sql
+│   │       ├── weather_code_distribution.sql
+│   │       └── schema.yml
+│   └── snapshots/
+│       └── snapshot_weather_data.sql
+│
+├── docker-compose-mlflow.yaml       # Airflow + dbt environment
+└── README.md
+
+Setup Instructions
+1. Start Airflow Environment
+docker-compose -f docker-compose-mlflow.yaml up
+This starts:
+
+Airflow scheduler
+Airflow webserver
+PostgreSQL backend
+dbt-enabled Airflow container
+2. Configure Airflow Connection
+In Airflow UI:
+
+Create connection: snowflake_conn
+Required fields:
+Account
+User
+Password
+Database
+Schema
+Warehouse
+Role
+This connection is used by the dbt DAG.
+
+3. Verify dbt Setup
+Inside the Airflow container:
+
+dbt debug --profiles-dir /opt/airflow/dbt --project-dir /opt/airflow/dbt
+
+Running the Pipeline
+Run via Airflow UI
+Open Airflow Web UI
+Find DAG: Open Meteo and BuildELT_dbt
+Trigger DAG manually
+The DAG executes:
+
+dbt run
+dbt test
+dbt snapshot
