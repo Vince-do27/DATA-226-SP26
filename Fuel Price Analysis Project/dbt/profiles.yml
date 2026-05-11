@@ -1,0 +1,13 @@
+fuel_analytics:
+  outputs:
+    dev:
+      account: SFEDU02-EAB27764
+      database: USER_DB_BOA
+      password: Showtime072795
+      role: TRAINING_ROLE
+      schema: dbt
+      threads: 1
+      type: snowflake
+      user: BOA
+      warehouse: BOA_WH
+  target: dev
