@@ -1,9 +1,5 @@
 # Fuel Price Analytics Pipeline
 
-DATA 226 Group Project - Group 9
-
-GitHub repository: 
-
 This project is an end-to-end data analytics pipeline for fuel price analysis. In simple words, the project collects real fuel and energy market data, stores it in Snowflake, transforms it with dbt, creates forecasting output with Snowflake ML, and prepares final tables for dashboarding in Tableau or another BI tool.
 
 The project is built around a very clear idea:
