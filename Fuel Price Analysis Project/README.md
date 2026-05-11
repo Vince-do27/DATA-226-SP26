@@ -653,7 +653,7 @@ USER_DB_BOA.DBT.REGIONAL_COMPARISON
 USER_DB_BOA.RAW.ENERGY_MARKET_PRICES
 ```
 
-Recommended dashboard pages:
+Dashboard pages:
 
 1. Historical national fuel price trend
 2. Forecast vs actual fuel price trend
